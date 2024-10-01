@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
@@ -7,14 +7,34 @@ import About from "./Components/About";
 import ContactUs from "./Components/ContactUs";
 import Error from "./Components/Error";
 import RestaurantMenu from "./Components/RestaurantMenu";
+import UserContext from "./utils/UserContext";
 // Define your layout component
 const AppLayout = () => {
+
+    
+
+    const[userinfo,setUserInfo]= useState();
+
+    useEffect(()=>{
+        const data={
+            name:"Manisha"
+        }
+        setUserInfo(data.name);
+    
+    },[]);
     return (
-        <div>
+        <UserContext.Provider value={{loggedInUser : userinfo,setUserInfo}}>
+             <div>
+             <UserContext.Provider value={{data :"Nishant"}}>
             
             <Header />
+            </UserContext.Provider>
             <Outlet/>
         </div>
+
+
+        </UserContext.Provider>
+       
     );
 };
 
@@ -38,7 +58,7 @@ const appRouter = createBrowserRouter([
                 element: <ContactUs />,
             },
             {
-                path: "/restaurants/:id",  
+                path: "/restaurant/:id",  
                 element: <RestaurantMenu />,
             },
         ],
