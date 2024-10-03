@@ -1,7 +1,18 @@
+import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
+import { addItems,clearCart } from "../utils/redux/cartSlice";
 
 const ItemList = (props) => {
   const item = props.list_data;
+  console.log(item);
+  const dispatch = useDispatch();
+
+  const handleAddToCart=(info)=>{
+    dispatch(addItems(info));
+
+
+
+  }
 
 
   return (
@@ -25,7 +36,7 @@ const ItemList = (props) => {
                 alt="res-logo"
                 src={CDN_URL + info.card?.info?.imageId}
               />
-              <button className="rounded-lg bg-black text-white ml-16">Add +</button>
+              <button className="rounded-lg bg-black text-white ml-16" onClick={()=>handleAddToCart(info)}>Add +</button>
 
             </div>
           </div>

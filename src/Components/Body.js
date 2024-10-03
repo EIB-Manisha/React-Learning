@@ -57,9 +57,9 @@ const Body = () => {
 
     return (
         listofRestaurants.length === 0 ? (<Shimmer />) : (
-            <div className="bg-slate-50">
+            <div className="bg-slate-50 px-4">
 
-                <div className="flex">
+                <div className="flex px-4">
                     <div className=" m-4 px-6">
                         <input className="border border-solid border-black"
                             type="text"
@@ -68,7 +68,7 @@ const Body = () => {
                                 setSearchtext(e.target.value);
 
                             }} />
-                        <button className="px-4 bg-green-400 rounded-lg"
+                        <button className="px-4 bg-slate-300 rounded-lg"
                             onClick={() => {
                                 const filteredrestaurant = listofRestaurants.filter((res) => {
                                     return res.info.name.toLowerCase().includes(searchtext.toLowerCase())
@@ -77,7 +77,8 @@ const Body = () => {
                             }}
                         >Search</button>
                     </div>
-                    <button className="px-4 py-1 bg-pink-50 rounded-2xl"
+                    <div className="px-6 mt-4">
+                    <button className="px-4 py-1 bg-slate-300 rounded-2xl w-auto h-8"
                         onClick={() => {
                             //filter logic
                             const filterlist = listofRestaurants.filter((res) => { return res.info.avgRating > 4.5 });
@@ -88,13 +89,16 @@ const Body = () => {
 
 
                     >Top Rated Restaurants</button>
+
+                    </div>
+                  
                     <div className="p-4">
                         <input className="h-10 p-5" onChange={(e) => setUserInfo(e.target.value)} value={loggedInUser}></input>
 
 
                     </div>
                 </div>
-                <div className="flex flex-wrap bg-red-400">
+                <div className="flex flex-wrap bg-gray-200">
 
 
                 
